@@ -1,18 +1,18 @@
-# Default values for helm-demo.
+# Default values for helm-auth.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 2
+replicaCount: 1
 
 image:
-  repository: demo
+  repository: auth
   pullPolicy: Never
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "auth-app"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -39,22 +39,19 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
-  targetPort: 3000
+  targetPort: 3001
 
 ingress:
-  enabled: true
-  className: "nginx"
-  annotations: {
-    nginx.ingress.kubernetes.io/auth-url: http://auth-app.staging-test.svc.cluster.local/auth,
-    nginx.ingress.kubernetes.io/auth-response-headers: clientId
-  }
+  enabled: false
+  className: ""
+  annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: some-host
+    - host: chart-example.local
       paths:
         - path: /
-          pathType: Prefix
+          pathType: ImplementationSpecific
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

@@ -5,6 +5,6 @@ WORKDIR $INSTALL_PATH
 
 COPY . .
 
-RUN npm ci
+RUN npm i
 
 ENTRYPOINT [ "node", "app.js" ]
