@@ -9,7 +9,7 @@ spec:
     - host: some-host
       http:
         paths:
-          - path: /pre/admin
+          - path: /
             pathType: Prefix
             backend:
               service:
